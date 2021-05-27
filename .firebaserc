@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "exploragram-5dd13": {
+      "hosting": {
+        "ExploraGram": [
+          "exploragram-5dd13"
+        ]
+      }
+    }
+  }
+}
