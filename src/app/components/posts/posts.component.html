@@ -19,20 +19,20 @@
   <div
     class="card-footer bg-transparent border-secondary d-flex justify-content-around align-content-center"
   >
-    <div (click)="upvotePost()" class="text-primary">
+    <div (click)="upvotePost()" title="Like" class="text-primary details">
       <fa-icon [icon]="faThumbsUp" size="lg" primaryColor="blue"></fa-icon>
       {{ upvote }}
     </div>
-    <div (click)="downvotePost()" class="text-secondary">
+    <div (click)="downvotePost()" title="Dislike" class="text-secondary details">
       <fa-icon [icon]="faThumbsDown" size="lg" primaryColor="blue"></fa-icon>
       {{ downvote }}
     </div>
 
-    <div *ngIf="post.userId == uid"  (click)="deletePost()" class="text-secondary">
-      <fa-icon [icon]="faTrashAlt" size="lg" primaryColor="blue"></fa-icon>
+    <div *ngIf="post.userId == uid"  (click)="deletePost()" class="text-secondary details">
+      <fa-icon title="Delete" [icon]="faTrashAlt" size="lg" primaryColor="blue"></fa-icon>
     </div>
 
-    <a [href]="getInstaUrl()" target="_blank" class="text-primary">
+    <a title="Go to instagram" [href]="getInstaUrl()" target="_blank" class="text-primary">
       <fa-icon [icon]="faShareSquare" size="lg" primaryColor="blue"></fa-icon>
     </a>
   </div>

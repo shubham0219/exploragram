@@ -20,7 +20,7 @@
       </div>
       <div class="col col-md-5">
         <p class="text-muted text-uppercase text-center">Recent new User</p>
-        <div (click)="gotoViewDetails(user.id)"  *ngFor="let user of users">
+        <div class="details" title="Click to view user details" (click)="gotoViewDetails(user.id)"  *ngFor="let user of users">
           <app-users [user]="user"></app-users>
         </div>
       </div>
