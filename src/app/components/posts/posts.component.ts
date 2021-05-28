@@ -6,6 +6,7 @@ import {
   faThumbsUp,
   faThumbsDown,
   faShareSquare,
+  faTrashAlt,
 } from '@fortawesome/free-regular-svg-icons';
 @Component({
   selector: 'app-posts',
@@ -18,6 +19,7 @@ export class PostsComponent implements OnInit, OnChanges {
   faThumbsUp = faThumbsUp;
   faThumbsDown = faThumbsDown;
   faShareSquare = faShareSquare;
+  faTrashAlt = faTrashAlt;
 
   uid = null;
   upvote = 0;
@@ -26,6 +28,8 @@ export class PostsComponent implements OnInit, OnChanges {
   constructor(private auth: AuthService, private db: AngularFireDatabase) {
     this.auth.getUser().subscribe((user) => {
       this.uid = user?.uid;
+      console.log("UId",this.uid);
+
     });
   }
 
@@ -63,5 +67,12 @@ export class PostsComponent implements OnInit, OnChanges {
 
   getInstaUrl() {
     return `https://instagram.com/${this.post.instaId}`;
+  }
+
+  deletePost() {
+    //alert('Delete');
+      debugger;
+      this.db.object(`/posts/${this.post.id}`).remove();
+      // this.db.object(`/posts/${this.post.id}/vote/${this.uid}`).remove();
   }
 }

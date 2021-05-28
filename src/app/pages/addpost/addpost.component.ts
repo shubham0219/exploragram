@@ -24,7 +24,7 @@ export class AddpostComponent implements OnInit {
   picture: string;
   user = null;
   uploadPercent: number = null;
-
+  userKey: number;
   constructor(
     private toastr: ToastrService,
     private auth: AuthService,
@@ -38,6 +38,8 @@ export class AddpostComponent implements OnInit {
         .valueChanges()
         .subscribe((user) => {
           this.user = user;
+          this.userKey = user['id'];
+          console.log('userKey', this.userKey);
         });
     });
   }
@@ -56,6 +58,7 @@ export class AddpostComponent implements OnInit {
         by: this.user.name,
         instaId: this.user.instaUserName,
         date: Date.now(),
+        userId: this.userKey,
       })
       .then(() => {
         this.toastr.success('Post added successfully.');
