@@ -20,6 +20,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UserdeatailsComponent } from './components/userdeatails/userdeatails.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PagenotfoundComponent,
     SigninComponent,
     SignupComponent,
+    UserdeatailsComponent,
   ],
   imports: [
     BrowserModule,

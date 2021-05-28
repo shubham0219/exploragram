@@ -1,3 +1,4 @@
+import { UserdeatailsComponent } from './components/userdeatails/userdeatails.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -37,6 +38,12 @@ const routes: Routes = [
   {
     path: "",
     component: HomeComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: "userDetails/:id",
+    component: UserdeatailsComponent,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },

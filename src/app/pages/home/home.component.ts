@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +14,11 @@ export class HomeComponent implements OnInit {
 
   isLoading = false;
 
-  constructor(private db: AngularFireDatabase, private toastr: ToastrService) {
+  constructor(
+    private db: AngularFireDatabase,
+    private toastr: ToastrService,
+    private router: Router
+  ) {
     this.isLoading = true;
     this.getAllUsers();
     this.getAllPosts();
@@ -29,6 +34,8 @@ export class HomeComponent implements OnInit {
       .subscribe((obj) => {
         if (obj) {
           this.users = Object.values(obj);
+          console.log('users', this.users);
+
           this.isLoading = false;
         } else {
           this.toastr.error('No user found.');
@@ -54,5 +61,10 @@ export class HomeComponent implements OnInit {
           this.isLoading = false;
         }
       });
+  }
+
+  gotoViewDetails(id: any) {
+    this.router.navigate(['userDetails', id]);
+    window.scroll(0, 0);
   }
 }

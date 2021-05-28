@@ -1,0 +1,21 @@
+<button class="btn btn-primary mt-5" routerLink="/" >Back to Home</button>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card mt-5 ">
+      <h5 class="card-header text-white bg-primary mb-3">User Details</h5>
+      <div class="card-body">
+        <img
+          class="card-img float-right"
+          src="{{ picture }}"
+          alt="{{ name }}"
+        />
+        <p class="card-title">Full Name : <b>{{ name }}</b></p>
+        <p class="card-text">country : <b>{{ country }}</b></p>
+        <p class="card-text">About : <b>{{ bio }}</b></p>
+        <p class="card-text">Email ID : <b>{{ email }}</b></p>
+        <p class="card-text">Insta User ID : <b>{{ instaUserName }}</b></p>
+      </div>
+    </div>
+  </div>
+</div>

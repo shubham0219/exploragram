@@ -71,8 +71,7 @@ export class PostsComponent implements OnInit, OnChanges {
 
   deletePost() {
     //alert('Delete');
-      debugger;
       this.db.object(`/posts/${this.post.id}`).remove();
-      // this.db.object(`/posts/${this.post.id}/vote/${this.uid}`).remove();
+      // this.db.object(`/posts/${this.post.id}/vote/${this.uid}`).remove()
   }
 }
