@@ -28,8 +28,8 @@
       {{ downvote }}
     </div>
 
-    <div *ngIf="post.userId == uid"  (click)="deletePost()" class="text-secondary details">
-      <fa-icon title="Delete" [icon]="faTrashAlt" size="lg" primaryColor="blue"></fa-icon>
+    <div *ngIf="post.userId == uid"  (click)="deletePost()" class="text-primary details">
+      <fa-icon class="text-danger" title="Delete" [icon]="faTrashAlt" size="lg" primaryColor="red"></fa-icon>
     </div>
 
     <a title="Go to instagram" [href]="getInstaUrl()" target="_blank" class="text-primary">
