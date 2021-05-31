@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from './../../services/auth.service';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
@@ -25,7 +26,7 @@ export class PostsComponent implements OnInit, OnChanges {
   upvote = 0;
   downvote = 0;
 
-  constructor(private auth: AuthService, private db: AngularFireDatabase) {
+  constructor(private auth: AuthService, private db: AngularFireDatabase, private toast : ToastrService) {
     this.auth.getUser().subscribe((user) => {
       this.uid = user?.uid;
       console.log("UId",this.uid);
@@ -72,6 +73,7 @@ export class PostsComponent implements OnInit, OnChanges {
   deletePost() {
     //alert('Delete');
       this.db.object(`/posts/${this.post.id}`).remove();
+      this.toast.error('Post deleted successfully.');
       // this.db.object(`/posts/${this.post.id}/vote/${this.uid}`).remove()
   }
 }
