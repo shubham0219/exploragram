@@ -39,7 +39,6 @@ export class AddpostComponent implements OnInit {
         .subscribe((user) => {
           this.user = user;
           this.userKey = user['id'];
-          console.log('userKey', this.userKey);
         });
     });
   }

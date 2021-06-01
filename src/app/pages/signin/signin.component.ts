@@ -1,3 +1,5 @@
+import { User } from './../../services/user';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './../../services/auth.service';
@@ -10,10 +12,12 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent implements OnInit {
+  user:User;
   constructor(
     private toastr: ToastrService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private db: AngularFireDatabase
   ) {}
   ngOnInit(): void {}
 
@@ -32,5 +36,9 @@ export class SigninComponent implements OnInit {
         closeButton: true
       });
     });
+  }
+
+  loginWithGoogle(){
+    this.auth.loginWithGoogle();
   }
 }
