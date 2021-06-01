@@ -48,6 +48,7 @@ user = {};
           picture: res.additionalUserInfo.profile['picture'],
         });
         this.router.navigateByUrl('/');
+        // console.log('loggedin');
       })
       .catch((err) => {
         console.log('error while sign in', err);

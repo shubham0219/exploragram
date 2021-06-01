@@ -19,7 +19,8 @@ export class SigninComponent implements OnInit {
     private router: Router,
     private db: AngularFireDatabase
   ) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   onSubmit(f: NgForm) {
     const { email, password } = f.form.value;
@@ -37,6 +38,7 @@ export class SigninComponent implements OnInit {
       });
     });
   }
+
 
   loginWithGoogle(){
     this.auth.loginWithGoogle();
