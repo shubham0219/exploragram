@@ -3,7 +3,7 @@
     "rules": "database.rules.json"
   },
   "hosting": {
-    "public": "dist\\ExploraGram",
+    "public": "ExploraGram\\dist",
     "ignore": [
       "firebase.json",
       "**/.*",

@@ -10,29 +10,40 @@
           <form (ngSubmit)="onSubmit(f)" #f="ngForm">
             <div>
               <!-- image picker -->
-              <div class="text-center">
+              <!-- <div class="text-center">
                 <label for="imagepicker" class="">
-                  <img [src]="picture" width="80" height="80" alt="" class="profile" />
+                  <img
+                    [src]="picture"
+                    width="40"
+                    height="40"
+                    alt=""
+                    class="profile"
+                  />
                 </label>
 
-                <input title="Select your profile image"
+                <input
                   type="file"
                   name="image"
                   id="imagepicker"
                   accept="image/*"
                   multiple="{false}"
                   class="hidden"
-                  hidden  (change)="uploadFile($event)"
+                  hidden
+                  (change)="uploadFile($event)"
                 />
-              </div>
+              </div> -->
 
-              <div [hidden]="!uploadPercent || uploadPercent == 100" class="text-white text-center">
-
+              <!-- <div
+                [hidden]="!uploadPercent || uploadPercent == 100"
+                class="text-white text-center"
+              >
                 uploading
-              {{uploadPercent | number: '1.0-0'}} % of 100%.
-              </div>
-              <div  *ngIf="uploadPercent == 100"
-               class="text-success text-uppercase text-center mb-3">
+                {{ uploadPercent | number: "1.0-0" }} % of 100%
+              </div> -->
+              <div
+                *ngIf="uploadPercent == 100"
+                class="text-success text-uppercase text-center mb-3"
+              >
                 Upload finished
               </div>
             </div>
@@ -46,7 +57,8 @@
                   id="name"
                   name="name"
                   placeholder="Enter Name"
-                  required ngModel
+                  required
+                  ngModel
                 />
               </div>
             </div>
@@ -60,7 +72,8 @@
                   id="email"
                   name="email"
                   placeholder="Enter Email"
-                  required ngModel
+                  required
+                  ngModel
                 />
               </div>
             </div>
@@ -74,9 +87,10 @@
                   type="password"
                   class="form-control"
                   id="password"
-                  name="password" ngModel
+                  name="password"
                   placeholder="Enter password"
                   required
+                  ngModel
                 />
                 <small id="emailHelp" class="form-text text-muted"
                   >Minimum length of the password should be 6 or more</small
@@ -93,9 +107,10 @@
                   type="text"
                   class="form-control"
                   id="username"
-                  name="username" ngModel
+                  name="username"
                   placeholder="Enter your handle of instagram"
                   required
+                  ngModel
                 />
               </div>
             </div>
@@ -107,29 +122,35 @@
                   type="text"
                   class="form-control"
                   id="country"
-                  name="country" ngModel
+                  name="country"
                   placeholder="Your Country"
                   required
+                  ngModel
                 />
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="email" class="col-sm-3 col-form-label">Bio</label>
+              <label for="email" class="col-sm-3 col-form-label">bio</label>
               <div class="col-sm-9">
                 <textarea
                   type="text"
                   class="form-control"
                   id="bio"
-                  name="bio" ngModel
-                  placeholder="Some bio about you..."
+                  name="bio"
+                  placeholder="some bio about you"
                   required
+                  ngModel
                 ></textarea>
               </div>
             </div>
 
             <div class="text-center">
-              <button [disabled]="!f.form.valid" class="btn btn-primary" type="submit">
+              <button
+                [disabled]="!f.form.valid"
+                class="btn btn-primary"
+                type="submit"
+              >
                 Sign Up
               </button>
             </div>
