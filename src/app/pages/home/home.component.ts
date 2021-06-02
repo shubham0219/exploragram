@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -13,15 +14,20 @@ export class HomeComponent implements OnInit {
   posts = [];
 
   isLoading = false;
-
+id;
   constructor(
     private db: AngularFireDatabase,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private auth : AuthService
   ) {
     this.isLoading = true;
     this.getAllUsers();
     this.getAllPosts();
+    auth.getUser().subscribe((user) => {
+      console.log("USER IS:", user);
+      this.id = user?.uid;
+    });
   }
 
   ngOnInit(): void {}
@@ -67,4 +73,9 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['userDetails', id]);
     window.scroll(0, 0);
   }
+  gotoEditProfile(){
+    this.router.navigate(['/edituser', this.id]);
+    window.scroll(0, 0);
+    }
+
 }

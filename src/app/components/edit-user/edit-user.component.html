@@ -1,0 +1,142 @@
+<div class="container">
+  <div class="row mt-5 mb-3">
+    <div class="col col-6 offset-3">
+      <div class="card border-primary">
+        <div class="card-header text-center text-info text-uppercase">
+          Edit Profile
+        </div>
+
+        <div class="card-body">
+          <form #f="ngForm" (ngSubmit)="onSubmit()">
+            <div>
+              <div class="text-center">
+                <label for="imagepicker" class="">
+                  <img
+                    [src]="picture"
+                    width="80"
+                    height="80"
+                    alt=""
+                    class="profile"
+                  />
+                </label>
+                <input
+                  title="Select your profile image"
+                  type="file"
+                  name="image"
+                  id="imagepicker"
+                  accept="image/*"
+                  multiple="{false}"
+                  class="hidden"
+                  hidden (change)="uploadFile($event)"
+                />
+              </div>
+              <div
+                [hidden]="!uploadPercent || uploadPercent == 100"
+                class="text-white text-center"
+              >
+                uploading
+                {{ uploadPercent | number: "1.0-0" }} % of 100%.
+              </div>
+              <div
+                *ngIf="uploadPercent == 100"
+                class="text-success text-uppercase text-center mb-3"
+              >
+                Upload finished
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="name" class="col-sm-3 col-form-label">Name</label>
+              <div class="col-sm-9">
+                <input
+                  type="name"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  placeholder="Enter Name"
+                  required
+                  [(ngModel)]="name"
+                />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="email" class="col-sm-3 col-form-label">Email</label>
+              <div class="col-sm-9">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  [(ngModel)]="email"
+                  name="email"
+                  placeholder="Enter Email"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="instaUserName" class="col-sm-3 col-form-label"
+                >Instagram name</label
+              >
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="instaUserName"
+                  ngModel
+                  name="instaUserName"
+                  [(ngModel)]="instaUserName"
+                  placeholder="Enter your handle of instagram"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="country" class="col-sm-3 col-form-label"
+                >Country</label
+              >
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="country"
+                  name="country"
+                  [(ngModel)]="country"
+                  placeholder="Your Country"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="bio" class="col-sm-3 col-form-label">Bio</label>
+              <div class="col-sm-9">
+                <textarea
+                  type="text"
+                  class="form-control"
+                  id="bio"
+                  name="bio"
+                  [(ngModel)]="bio"
+                  placeholder="Some bio about you..."
+                  required
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button
+                [disabled]="!f.form.valid"
+                class="btn btn-primary"
+                type="submit"
+              >
+                Update
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

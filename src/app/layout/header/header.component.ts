@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   email = null;
+  id : any;
   constructor(
     private auth: AuthService,
     private router: Router,
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
     auth.getUser().subscribe((user) => {
       console.log("USER IS:", user);
       this.email = user?.email;
+      this.id = user?.uid;
     });
   }
 
@@ -34,5 +36,11 @@ export class HeaderComponent implements OnInit {
       this.toastr.error("Problem in signout");
     }
   }
+
+  gotoEditProfile(){
+    this.router.navigate(['/edituser', this.id]);
+    window.scroll(0, 0);
+    }
+
 
 }

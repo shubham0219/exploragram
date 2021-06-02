@@ -1,3 +1,4 @@
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { UserdeatailsComponent } from './components/userdeatails/userdeatails.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { SigninComponent } from './pages/signin/signin.component';
@@ -44,6 +45,12 @@ const routes: Routes = [
   {
     path: "userDetails/:id",
     component: UserdeatailsComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: "edituser/:id",
+    component: EditUserComponent,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },

@@ -21,6 +21,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserdeatailsComponent } from './components/userdeatails/userdeatails.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { UserdeatailsComponent } from './components/userdeatails/userdeatails.co
     SigninComponent,
     SignupComponent,
     UserdeatailsComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,
