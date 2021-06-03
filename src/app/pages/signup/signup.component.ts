@@ -40,9 +40,7 @@ export class SignupComponent implements OnInit {
 
   onSubmit(f: NgForm) {
     const { email, password, username, country, bio, name } = f.form.value;
-
     //further sanitization - do here
-
     this.auth.signUp(email, password)
       .then((res) => {
         console.log(res);

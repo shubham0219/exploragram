@@ -62,10 +62,8 @@
       <fa-icon [icon]="faShareSquare" size="lg" primaryColor="blue"></fa-icon>
     </a>
 
-    <!-- <button (click)="download(post.picture)">Save</button> -->
-
     <div title="Post Comments" (click)="enableCommentSection()">
-      <fa-icon [icon]="faComment" size="lg" primaryColor="blue"></fa-icon>
+      <fa-icon [icon]="faComment" class="text-primary" size="lg" primaryColor="blue"></fa-icon>
       {{ comments?.length }}
     </div>
   </div>

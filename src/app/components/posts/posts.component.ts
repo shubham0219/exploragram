@@ -123,4 +123,11 @@ export class PostsComponent implements OnInit, OnChanges {
   //   link.click();
   // }
 
+  deleteComment(){
+    console.log("userId",this.uid);
+return;
+    this.db.object(`/posts/${this.post.id}/comments/${this.uid}`).remove();
+    this.toast.error('Comment deleted successfully.');
+  }
+
 }
