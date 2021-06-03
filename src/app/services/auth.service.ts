@@ -34,8 +34,6 @@ user = {};
     return this.auth.signOut();
   }
 
-
-
   async loginWithGoogle() {
     await this.auth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())

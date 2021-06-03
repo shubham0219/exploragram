@@ -13,30 +13,101 @@
     </h5>
     <p class="card-text">{{ post.description }}</p>
     <p class="card-text">
-      <small class="text-muted">by:- {{ post.by }}</small>
+      <small class="text-muted">By:- {{ post.by }}</small>
     </p>
   </div>
   <div
-    class="card-footer bg-transparent border-secondary d-flex justify-content-around align-content-center"
+    class="
+      card-footer
+      bg-transparent
+      border-secondary
+      d-flex
+      justify-content-around
+      align-content-center
+    "
   >
     <div (click)="upvotePost()" title="Like" class="text-primary details">
       <fa-icon [icon]="faThumbsUp" size="lg" primaryColor="blue"></fa-icon>
       {{ upvote }}
     </div>
-    <div (click)="downvotePost()" title="Dislike" class="text-secondary details">
+    <div
+      (click)="downvotePost()"
+      title="Dislike"
+      class="text-secondary details"
+    >
       <fa-icon [icon]="faThumbsDown" size="lg" primaryColor="blue"></fa-icon>
       {{ downvote }}
     </div>
 
-    <div *ngIf="post.userId == uid"  (click)="deletePost()" class="text-primary details">
-      <fa-icon class="text-danger" title="Delete" [icon]="faTrashAlt" size="lg" primaryColor="red"></fa-icon>
+    <div
+      *ngIf="post.userId == uid"
+      (click)="deletePost()"
+      class="text-primary details"
+    >
+      <fa-icon
+        class="text-danger"
+        title="Delete"
+        [icon]="faTrashAlt"
+        size="lg"
+        primaryColor="red"
+      ></fa-icon>
     </div>
 
-    <a title="Go to instagram" [href]="getInstaUrl()" target="_blank" class="text-primary">
+    <a
+      title="Go to instagram"
+      [href]="getInstaUrl()"
+      target="_blank"
+      class="text-primary"
+    >
       <fa-icon [icon]="faShareSquare" size="lg" primaryColor="blue"></fa-icon>
     </a>
+
+    <!-- <button (click)="download(post.picture)">Save</button> -->
+
+    <div title="Post Comments" (click)="enableCommentSection()">
+      <fa-icon [icon]="faComment" size="lg" primaryColor="blue"></fa-icon>
+      {{ comments?.length }}
+    </div>
+  </div>
+  <div *ngIf="commentsSection">
+    <form #f="ngForm" class="form-inline">
+      <div class="form-group mx-sm-3">
+        <label for="inputPassword2" class="sr-only">Comments</label>
+        <input
+          type="text"
+          class="form-control lengthInput ml-2"
+          id="comments"
+          name="comments"
+          placeholder="Post your comments here..."
+          required
+          ngModel
+        />
+      </div>
+      <button
+        type="button"
+        (click)="postComments(f)"
+        [disabled]="!f.valid"
+        class="btn btn-primary ml-auto"
+      >
+        Post Comments
+      </button>
+      <button
+        type="button"
+        (click)="enableCommentSection()"
+        class="btn btn-secondary mr-4 ml-2"
+      >
+        Close
+      </button>
+    </form>
+  </div>
+  <div class="ml-4 mb-4 mr-4" *ngIf="commentsSection">
+    <h6 class="text-primary">Comments List :</h6>
+    <div *ngIf="comments?.length == 0 || !comments">No comments found.</div>
+    <ul class="list-group" *ngFor="let comment of comments">
+      <li class="list-group-item">
+        <span class="text-success">{{ comment.comments }}</span> comment by
+        <b>({{ comment.email }})</b>
+      </li>
+    </ul>
   </div>
 </div>
-
-
-

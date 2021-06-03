@@ -8,7 +8,9 @@ import {
   faThumbsDown,
   faShareSquare,
   faTrashAlt,
+  faComment,
 } from '@fortawesome/free-regular-svg-icons';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
@@ -21,16 +23,24 @@ export class PostsComponent implements OnInit, OnChanges {
   faThumbsDown = faThumbsDown;
   faShareSquare = faShareSquare;
   faTrashAlt = faTrashAlt;
+  faComment = faComment;
 
   uid = null;
   upvote = 0;
   downvote = 0;
+  commentsSection: boolean = false;
 
-  constructor(private auth: AuthService, private db: AngularFireDatabase, private toast : ToastrService) {
+  comments: any;
+  userName: string;
+  constructor(
+    private auth: AuthService,
+    private db: AngularFireDatabase,
+    private toast: ToastrService
+  ) {
     this.auth.getUser().subscribe((user) => {
       this.uid = user?.uid;
-      console.log("UId",this.uid);
-
+      this.userName = user?.email;
+      console.log('UId', user);
     });
   }
 
@@ -48,7 +58,9 @@ export class PostsComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getComments();
+  }
 
   //to like a post
   upvotePost() {
@@ -72,8 +84,43 @@ export class PostsComponent implements OnInit, OnChanges {
 
   deletePost() {
     //alert('Delete');
-      this.db.object(`/posts/${this.post.id}`).remove();
-      this.toast.error('Post deleted successfully.');
-      // this.db.object(`/posts/${this.post.id}/vote/${this.uid}`).remove()
+    this.db.object(`/posts/${this.post.id}`).remove();
+    this.toast.error('Post deleted successfully.');
+    // this.db.object(`/posts/${this.post.id}/vote/${this.uid}`).remove()
   }
+
+  //for enabling the comment section...
+  enableCommentSection() {
+    this.commentsSection = !this.commentsSection;
+  }
+
+  //for posting comments...
+  postComments(f: NgForm) {
+    const { comments } = f.value;
+    this.db.object(`/posts/${this.post.id}/comments/${this.uid}`).set({
+      comments: comments,
+      email: this.userName
+    });
+    this.toast.success('Comment posted successfully.');
+    this.enableCommentSection();
+  }
+
+  getComments() {
+    this.db
+      .list(`/posts/${this.post.id}/comments`)
+      .valueChanges()
+      .subscribe((res) => {
+        console.log('comments', res);
+        this.comments = res;
+      });
+  }
+
+  // download(data){
+  //   console.log("data",data);
+  //   let link = document.createElement('a');
+  //   link.download = data;
+  //   link.href = data.url;
+  //   link.click();
+  // }
+
 }
