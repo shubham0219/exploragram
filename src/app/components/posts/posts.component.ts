@@ -1,7 +1,9 @@
+import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from './../../services/auth.service';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { v4 as uuidv4 } from 'uuid';
 
 import {
   faThumbsUp,
@@ -9,8 +11,9 @@ import {
   faShareSquare,
   faTrashAlt,
   faComment,
+  faEdit,
 } from '@fortawesome/free-regular-svg-icons';
-import { NgForm } from '@angular/forms';
+
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
@@ -18,20 +21,19 @@ import { NgForm } from '@angular/forms';
 })
 export class PostsComponent implements OnInit, OnChanges {
   @Input() post;
-
   faThumbsUp = faThumbsUp;
   faThumbsDown = faThumbsDown;
   faShareSquare = faShareSquare;
   faTrashAlt = faTrashAlt;
   faComment = faComment;
-
+  faEdit = faEdit;
   uid = null;
   upvote = 0;
   downvote = 0;
   commentsSection: boolean = false;
-
   comments: any;
   userName: string;
+  commentsEdit: any;
   constructor(
     private auth: AuthService,
     private db: AngularFireDatabase,
@@ -99,15 +101,33 @@ export class PostsComponent implements OnInit, OnChanges {
     const { comments } = f.value;
     this.db.object(`/posts/${this.post.id}/comments/${this.uid}`).set({
       comments: comments,
-      email: this.userName
+      email: this.userName,
     });
     this.toast.success('Comment posted successfully.');
     this.enableCommentSection();
   }
 
+  //new one to post the new comments with the same user...
+  postComment(f: NgForm) {
+    const uid = uuidv4();
+    const currentDate = new Date().getTime();
+    const { comments } = f.value;
+    this.db.object(`/comments/${this.post.id}/${uid}`).set({
+      comments: comments,
+      email: this.userName,
+      cid: uid,
+      pid: this.post.id,
+      id: this.uid,
+      creationDate: currentDate,
+    });
+    this.toast.success('Comment posted successfully.');
+    this.enableCommentSection();
+  }
+
+  //getting comments
   getComments() {
     this.db
-      .list(`/posts/${this.post.id}/comments`)
+      .list(`/comments/${this.post.id}`)
       .valueChanges()
       .subscribe((res) => {
         console.log('comments', res);
@@ -123,11 +143,16 @@ export class PostsComponent implements OnInit, OnChanges {
   //   link.click();
   // }
 
-  deleteComment(){
-    console.log("userId",this.uid);
-return;
-    this.db.object(`/posts/${this.post.id}/comments/${this.uid}`).remove();
+  //for delete comments
+  deleteComment(id) {
+    this.db.object(`/comments/${this.post.id}/${id}`).remove();
     this.toast.error('Comment deleted successfully.');
   }
 
+  // editComment(data) {
+  //   console.log('edit called..', data);
+  //   this.db.object(`/comments/${this.post.id}/${data.id}`).update({
+  //     comments: data.comments,
+  //   });
+  // }
 }

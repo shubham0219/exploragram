@@ -83,7 +83,7 @@
       </div>
       <button
         type="button"
-        (click)="postComments(f)"
+        (click)="postComment(f)"
         [disabled]="!f.valid"
         class="btn btn-primary ml-auto"
       >
@@ -105,6 +105,24 @@
       <li class="list-group-item">
         <span class="text-success">{{ comment.comments }}</span> comment by
         <b>({{ comment.email }})</b>
+        <span>({{ comment.creationDate | date: 'dd/MM/yyyy hh:mm a' }})</span>
+
+        <button  class="btn details"  *ngIf="comment.id == uid"
+        (click)="deleteComment(comment.cid)">  <fa-icon
+        class="text-danger"
+        title="Delete Comment"
+        [icon]="faTrashAlt"
+        size="lg"
+        primaryColor="red"
+      ></fa-icon></button>
+      <!-- <button type="button" class="btn details"  *ngIf="comment.id == uid"
+      (click)="editComment(comment)">  <fa-icon
+      class="text-danger"
+      title="Edit comment"
+      [icon]="faTrashAlt"
+      size="lg"
+      primaryColor="red"
+    ></fa-icon></button> -->
       </li>
     </ul>
   </div>

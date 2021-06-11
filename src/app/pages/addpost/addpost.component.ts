@@ -8,7 +8,6 @@ import { finalize } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { readAndCompressImage } from 'browser-image-resizer';
-import { utils } from 'protractor';
 
 //uuid
 import { v4 as uuidv4 } from 'uuid';
@@ -47,6 +46,7 @@ export class AddpostComponent implements OnInit {
 
   onSubmit() {
     const uid = uuidv4();
+    const currentDate = new Date().getTime();
     this.db
       .object(`/posts/${uid}`)
       .set({
@@ -56,7 +56,7 @@ export class AddpostComponent implements OnInit {
         picture: this.picture,
         by: this.user.name,
         instaId: this.user.instaUserName,
-        date: Date.now(),
+        creationDate: currentDate,
         userId: this.userKey,
       })
       .then(() => {
