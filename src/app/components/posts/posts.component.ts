@@ -99,6 +99,7 @@ export class PostsComponent implements OnInit, OnChanges {
   //new one to post the new comments with the same user...
   postComment(f: NgForm) {
     const uid = uuidv4();
+    const currentDate = new Date().getTime();
     const { comments } = f.value;
     this.db.object(`/comments/${this.post.id}/${uid}`).set({
       comments: comments,
@@ -106,6 +107,7 @@ export class PostsComponent implements OnInit, OnChanges {
       cid: uid,
       pid: this.post.id,
       id: this.uid,
+      creationDate: currentDate,
     });
     this.toast.success('Comment posted successfully.');
     this.enableCommentSection();

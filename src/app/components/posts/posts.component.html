@@ -105,6 +105,7 @@
       <li class="list-group-item">
         <span class="text-success">{{ comment.comments }}</span> comment by
         <b>({{ comment.email }})</b>
+        <span>({{ comment.creationDate | date: 'dd/MM/yyyy hh:mm a' }})</span>
         <button  class="btn details"  *ngIf="comment.id == uid"
         (click)="deleteComment(comment.cid)">  <fa-icon
         class="text-danger"
