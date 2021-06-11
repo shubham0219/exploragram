@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 
+import { faInbox } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -11,6 +12,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HeaderComponent implements OnInit {
   email = null;
   id : any;
+  faInbox = faInbox;
+
   constructor(
     private auth: AuthService,
     private router: Router,
@@ -42,5 +45,8 @@ export class HeaderComponent implements OnInit {
     window.scroll(0, 0);
     }
 
+    messageRead(){
+      console.log("clicked");
 
+    }
 }
