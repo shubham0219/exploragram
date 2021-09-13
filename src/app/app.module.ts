@@ -22,6 +22,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserdeatailsComponent } from './components/userdeatails/userdeatails.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { ChatComponent } from './pages/chat/chat.component';
+import { SearchFilterPipe } from './search-filter.pipe';
+import { signupDeactivateGuardService } from './pages/signup/signup-candeactivate-guard.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     SignupComponent,
     UserdeatailsComponent,
     EditUserComponent,
+    ChatComponent,
+    SearchFilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +55,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     AngularFireDatabaseModule,
     AngularFireStorageModule,
   ],
-  providers: [],
+  providers: [signupDeactivateGuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

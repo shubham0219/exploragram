@@ -17,14 +17,12 @@ export class SigninComponent implements OnInit {
     private toastr: ToastrService,
     private auth: AuthService,
     private router: Router,
-    private db: AngularFireDatabase
   ) {}
   ngOnInit(): void {
   }
 
   onSubmit(f: NgForm) {
     const { email, password } = f.form.value;
-
     this.auth.signIn(email, password)
     .then((res)=>{
       this.toastr.success("Sign In success",'', {

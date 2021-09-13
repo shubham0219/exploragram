@@ -73,7 +73,7 @@ export class UserdeatailsComponent implements OnInit {
     const uid = uuidv4();
     const { message } = f.value;
     this.db
-      .object(`message/${uid}`)
+      .object(`message/${this.userId}/${uid}`)
       .set({
         messages: message,
         mid: uid,

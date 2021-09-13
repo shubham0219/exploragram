@@ -1,9 +1,42 @@
-<div  class="card mb-3 horizontally-display">
+<div class="card mb-3 horizontally-display">
+
   <div class="d-flex justify-content-center align-items-center">
-    <img [src]="user.picture" width="50" height="50" class="rounded-circle ml-2" alt="">
+    <img
+      [src]="user.picture"
+      width="50"
+      height="50"
+      class="rounded-circle ml-2"
+      alt=""
+    />
   </div>
   <div class="card-body">
-    <h5 class="card-title">{{user.name | uppercase}}</h5>
-    <p class="card-text">{{user.bio}}</p>
+    <h5 class="card-title">{{ user.name | uppercase }}</h5>
+    <p class="card-text">{{ user.bio }}</p>
   </div>
+
+  <!-- <button  class="btn btn-primary" type="button" (click)="gotoViewDetails(user.id)">
+    View Profile
+  </button> -->
+  <div>
+    <fa-icon
+      title="Click to see user details.."
+      [icon]="faEye"
+      class="btn btn-primary m-auto"
+      size="lg"
+      (click)="gotoViewDetails(user.id)"
+      primaryColor="blue"
+    ></fa-icon>
+    <fa-icon
+      title="Go to Inbox.."
+      [icon]="faEnvelope"
+      class="btn btn-primary ml-3"
+      size="lg"
+      (click)="gotoMesssagePage(user.id)"
+      primaryColor="blue"
+    ></fa-icon>
+  </div>
+
+  <!-- <div>
+    <fa-icon title="Click to see user details.." [icon]="faEnvelope" class="btn btn-primary m-auto" size="lg" (click)="gotoMesssagePage(user.id)" primaryColor="blue"></fa-icon>
+  </div> -->
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { Router } from "@angular/router";
 //services
@@ -22,6 +22,7 @@ import { imageConfig } from "src/utils/config";
   styleUrls: ["./signup.component.css"],
 })
 export class SignupComponent implements OnInit {
+  @ViewChild ('f') public signupForm: NgForm;
   picture: string =
     "https://learnyst.s3.amazonaws.com/assets/schools/2410/resources/images/logo_lco_i3oab.png";
 

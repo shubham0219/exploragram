@@ -12,20 +12,19 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   users = [];
   posts = [];
-
   isLoading = false;
-id;
+  id;
   constructor(
     private db: AngularFireDatabase,
     private toastr: ToastrService,
     private router: Router,
-    private auth : AuthService
+    private auth: AuthService
   ) {
     this.isLoading = true;
     this.getAllUsers();
     this.getAllPosts();
     auth.getUser().subscribe((user) => {
-      console.log("USER IS:", user);
+      console.log('USER IS:', user);
       this.id = user?.uid;
     });
   }
@@ -69,13 +68,12 @@ id;
       });
   }
 
-  gotoViewDetails(id: any) {
-    this.router.navigate(['userDetails', id]);
-    window.scroll(0, 0);
-  }
-  gotoEditProfile(){
+  // gotoViewDetails(id: any) {
+  //   this.router.navigate(['userDetails', id]);
+  //   window.scroll(0, 0);
+  // }
+  gotoEditProfile() {
     this.router.navigate(['/edituser', this.id]);
     window.scroll(0, 0);
-    }
-
+  }
 }

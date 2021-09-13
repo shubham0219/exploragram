@@ -1,3 +1,4 @@
+import { ChatComponent } from '../app/pages/chat/chat.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { UserdeatailsComponent } from './components/userdeatails/userdeatails.component';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -13,6 +14,7 @@ import {
   redirectUnauthorizedTo,
   redirectLoggedInTo,
 } from '@angular/fire/auth-guard';
+import { signupDeactivateGuardService } from './pages/signup/signup-candeactivate-guard.service';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(["signin"]);
 const redirectLoggedInToHome = () => redirectLoggedInTo([""]);
@@ -27,6 +29,7 @@ const routes: Routes = [
   {
     path: "signup",
     component: SignupComponent,
+    canDeactivate : [signupDeactivateGuardService],
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectLoggedInToHome },
   },
@@ -54,6 +57,17 @@ const routes: Routes = [
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
+  // {
+  //   path: "inbox",
+  //   component: ChatComponent,
+  //   canActivate: [AngularFireAuthGuard],
+  // },
+  {
+    path: "inbox/:id",
+    component: ChatComponent,
+    canActivate: [AngularFireAuthGuard],
+  },
+
   {
     path: "**",
     component: PagenotfoundComponent,

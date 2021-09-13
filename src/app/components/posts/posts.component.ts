@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from './../../services/auth.service';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { v4 as uuidv4 } from 'uuid';
+  import { v4 as uuidv4 } from 'uuid';
 
 import {
   faThumbsUp,
